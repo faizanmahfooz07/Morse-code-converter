@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Morse Code Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        h1 {
+            color: #ff0000;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(255, 0, 0, 0.3);
+        }
+        textarea {
+            padding: 10px;
+            font-size: 16px;
+            height: 100px;
+            background-color: #2d2d2d;
+            color: #ffffff;
+            border: 2px solid #ff0000;
+            border-radius: 5px;
+            resize: vertical;
+        }
+        textarea:focus {
+            outline: none;
+            box-shadow: 0 0 5px #ff0000;
+        }
+        #output {
+            padding: 15px;
+            border: 2px solid #ff0000;
+            min-height: 100px;
+            background-color: #2d2d2d;
+            border-radius: 5px;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Live Morse Code Converter</h1>
+        <textarea id="input" placeholder="Type your text here..."></textarea>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        const morseCode = {
+            'A': '.-', 'B': '-...', 'C': '-.-.', 'D': '-..', 'E': '.',
+            'F': '..-.', 'G': '--.', 'H': '....', 'I': '..', 'J': '.---',
+            'K': '-.-', 'L': '.-..', 'M': '--', 'N': '-.', 'O': '---',
+            'P': '.--.', 'Q': '--.-', 'R': '.-.', 'S': '...', 'T': '-',
+            'U': '..-', 'V': '...-', 'W': '.--', 'X': '-..-', 'Y': '-.--',
+            'Z': '--..', '1': '.----', '2': '..---', '3': '...--', '4': '....-',
+            '5': '.....', '6': '-....', '7': '--...', '8': '---..', '9': '----.',
+            '0': '-----', ' ': ' ', '.': '.-.-.-', ',': '--..--', '?': '..--..',
+            '!': '-.-.--', '/': '-..-.', '(': '-.--.', ')': '-.--.-', '&': '.-...',
+            ':': '---...', ';': '-.-.-.', '=': '-...-', '+': '.-.-.', '-': '-....-',
+            '_': '..--.-', '"': '.-..-.', '$': '...-..-', '@': '.--.-.'
+        };
+
+        const input = document.getElementById('input');
+        const output = document.getElementById('output');
+
+        input.addEventListener('input', function() {
+            const text = this.value.toUpperCase();
+            const morse = text.split('').map(char => {
+                return morseCode[char] || char;
+            }).join(' ');
+            
+            output.textContent = morse;
+        });
+    </script>
+</body>
+</html> 
