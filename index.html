@@ -37,7 +37,7 @@
             outline: none;
             box-shadow: 0 0 5px #ff0000;
         }
-        #output {
+        #output, #morseOutput {
             padding: 15px;
             border: 2px solid #ff0000;
             min-height: 100px;
@@ -52,6 +52,8 @@
         <h1>Live Morse Code Converter</h1>
         <textarea id="input" placeholder="Type your text here..."></textarea>
         <div id="output"></div>
+        <textarea id="morseInput" placeholder="Type your Morse code here..."></textarea>
+        <div id="morseOutput"></div>
     </div>
 
     <script>
@@ -69,17 +71,28 @@
             '_': '..--.-', '"': '.-..-.', '$': '...-..-', '@': '.--.-.'
         };
 
-        const input = document.getElementById('input');
-        const output = document.getElementById('output');
+        const textToMorse = document.getElementById('input');
+        const morseOutput = document.getElementById('output');
+        const morseToText = document.getElementById('morseInput');
+        const textOutput = document.getElementById('morseOutput');
 
-        input.addEventListener('input', function() {
+        textToMorse.addEventListener('input', function() {
             const text = this.value.toUpperCase();
             const morse = text.split('').map(char => {
                 return morseCode[char] || char;
             }).join(' ');
             
-            output.textContent = morse;
+            morseOutput.textContent = morse;
+        });
+
+        morseToText.addEventListener('input', function() {
+            const morse = this.value.trim().split(' ');
+            const text = morse.map(code => {
+                return Object.keys(morseCode).find(key => morseCode[key] === code) || code;
+            }).join('');
+            
+            textOutput.textContent = text;
         });
     </script>
 </body>
-</html> 
+</html>
