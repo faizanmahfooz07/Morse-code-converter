@@ -1,0 +1,23 @@
+{
+  "name": "morse-code-converter",
+  "version": "1.0.0",
+  "description": "A simple Morse code converter that converts text to Morse code and vice versa",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "morse",
+    "code",
+    "converter"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "readline-sync": "^1.4.10"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
